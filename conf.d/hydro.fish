@@ -1,5 +1,9 @@
 status is-interactive || exit
 
+if test -f "$__fish_config_dir/conf.d/hydro.config"
+    source "$__fish_config_dir/conf.d/hydro.config"
+end
+
 set --global _hydro_git _hydro_git_$fish_pid
 
 function $_hydro_git --on-variable $_hydro_git
@@ -93,7 +97,7 @@ function _hydro_prompt --on-event fish_prompt
                     set upstream \" $hydro_symbol_git_ahead\$ahead $hydro_symbol_git_behind\$behind\"
             end
 
-            set --universal $_hydro_git \"\$branch\$info\$upstream \"
+            set --universal $_hydro_git \" \$branch\$info\$upstream \"
 
             test \$fetch = true && command git fetch --no-tags 2>/dev/null
         end
