@@ -141,6 +141,14 @@ function hydro_space --on-variable hydro_space_before_prompt
     end
 end && hydro_space
 
+function hydro_custom_msg_logic --on-variable hydro_custom_msg
+    if test (string length "$hydro_custom_msg") -gt 0
+        set --global _hydro_custom_msg (set_color $hydro_color_custom_msg)"$hydro_custom_msg"(set_color normal)
+    else
+        set --global _hydro_custom_msg ""
+    end
+end && hydro_custom_msg_logic
+
 set --query hydro_color_error || set --global hydro_color_error $fish_color_error
 set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
 set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
