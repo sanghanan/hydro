@@ -133,10 +133,19 @@ function hydro_multiline --on-variable hydro_multiline
     end
 end && hydro_multiline
 
+function hydro_space --on-variable hydro_space_before_prompt
+    if test "$hydro_space_before_prompt" = true
+        set --global _hydro_space "\n"
+    else
+        set --global _hydro_space ""
+    end
+end && hydro_space
+
 set --query hydro_color_error || set --global hydro_color_error $fish_color_error
 set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
 set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
 set --query hydro_multiline || set --global hydro_multiline false
+set --query hydro_space_before_prompt || set --global hydro_space false
 set --query hydro_cmd_duration_threshold || set --global hydro_cmd_duration_threshold 1000
